@@ -28,4 +28,4 @@ WORKDIR $APP_ROOT
 
 RUN python3 manage.py migrate --no-input; exit 0
 
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app.wsgi:application
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 --worker-class=gevent app.wsgi:application
