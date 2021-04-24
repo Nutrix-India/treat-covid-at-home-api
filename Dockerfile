@@ -19,17 +19,13 @@ ENV APP_USER=admin \
 
 WORKDIR $APP_ROOT
 
-RUN pip install --upgrade pip
 COPY requirements.txt $APP_ROOT
-RUN pip install --default-timeout=10000 -r requirements.txt
+RUN pip install -r requirements.txt
 
-# Copy project files
 COPY . $APP_ROOT
 
-# Set working directory
 WORKDIR $APP_ROOT
 
-# Run Migrations
 RUN python3 manage.py migrate --no-input; exit 0
 
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app.wsgi:application
