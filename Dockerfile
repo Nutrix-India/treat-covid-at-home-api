@@ -10,7 +10,6 @@ LABEL maintainer=vinay.kudari30@gmail.com \
 ENV APP_USER=admin \
     APP_ROOT=/code \
     APP_NAME=treat-covid-at-home-api \
-    DJANGO_APP_ROOT=/code/treat-covid-at-home-api \
     LOG_LEVEL=info \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -28,7 +27,7 @@ RUN pip install --default-timeout=10000 -r requirements.txt
 COPY . $APP_ROOT
 
 # Set working directory
-WORKDIR $DJANGO_APP_ROOT
+WORKDIR $APP_ROOT
 
 # Run Migrations
 RUN python3 manage.py migrate --no-input; exit 0
