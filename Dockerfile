@@ -33,6 +33,4 @@ WORKDIR $DJANGO_APP_ROOT
 # Run Migrations
 RUN python3 manage.py migrate --no-input; exit 0
 
-RUN chown -R $APP_USER:$APP_USER $APP_ROOT
-
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 app.wsgi:application
