@@ -1,0 +1,30 @@
+steps:
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: [
+       'build',
+       '--build-arg',
+       'SECRET_KEY=$_SECRET_KEY',
+       '-t',
+       'gcr.io/$PROJECT_ID/treat-covid-at-home-api:$COMMIT_SHA',
+       '.'
+   ]
+   timeout: 900s
+ # Push the container image to Container Registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/$PROJECT_ID/treat-covid-at-home-api:$COMMIT_SHA']
+   timeout: 900s
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   timeout: 900s
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'treat-covid-at-home-api'
+   - '--image'
+   - 'gcr.io/$PROJECT_ID/treat-covid-at-home-api:$COMMIT_SHA'
+   - '--region'
+   - 'us-central1'
+   - '--platform'
+   - 'managed'
