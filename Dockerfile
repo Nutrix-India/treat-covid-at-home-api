@@ -20,6 +20,7 @@ ENV APP_USER=admin \
 WORKDIR $APP_ROOT
 
 COPY requirements.txt $APP_ROOT
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . $APP_ROOT
