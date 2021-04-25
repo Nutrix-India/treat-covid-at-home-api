@@ -19,6 +19,14 @@ ENV APP_USER=admin \
 
 WORKDIR $APP_ROOT
 
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    postgresql-client \
+    wget \
+    python-psycopg2 \
+    && \
+    apt-get clean
+
 COPY requirements.txt $APP_ROOT
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt

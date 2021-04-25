@@ -4,7 +4,7 @@ steps:
    args: [
        'build',
        '--build-arg',
-       'SECRET_KEY=$_SECRET_KEY',
+       'DATABASE_URL=$_DATABASE_URL SECRET_KEY=$_SECRET_KEY',
        '-t',
        'gcr.io/$PROJECT_ID/treat-covid-at-home-api:$COMMIT_SHA',
        '.'
