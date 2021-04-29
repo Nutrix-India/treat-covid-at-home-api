@@ -32,10 +32,19 @@ class DoctorViewSet(viewsets.ModelViewSet):
 
     @staticmethod
     def truncate(f, n):
-        return math.trunc(f * 10 ** n) / 10 ** n
+        res = math.trunc(f * 10 ** n) / 10 ** n
+        return int(res) if n == 0 else res
 
     def create(self, request, *args, **kwargs):
         serializer_data = request.data
+        lat = serializer_data.get('lat')
+        long = serializer_data.get('long')
+
+        if not (lat or long):
+            lat, long = request.ipinfo.loc.split(',')
+            serializer_data['lat'] = lat
+            serializer_data['long'] = long
+
         experience_list = serializer_data.get('experience')
         education_list = serializer_data.get('education')
         serializer = self.get_serializer(data=serializer_data)
@@ -54,7 +63,7 @@ class DoctorViewSet(viewsets.ModelViewSet):
         source_lon = request.query_params.get('source_lon')
 
         if not (source_lat or source_lon):
-            return Response('Please pass source latitude and longitude in the request body')
+            source_lat, source_lon = request.ipinfo.loc.split(',')
 
         precision_level = request.data.get('precision_level', 1)
 

@@ -35,6 +35,6 @@ COPY . $APP_ROOT
 
 WORKDIR $APP_ROOT
 
-RUN python3 manage.py migrate --no-input; exit 0
+RUN python3 manage.py migrate --no-input
 
 CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 --worker-class=gevent app.wsgi:application

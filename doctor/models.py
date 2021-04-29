@@ -32,3 +32,9 @@ class Education(models.Model):
     university_name = models.CharField(max_length=100)
     degree = models.CharField(max_length=100)
     doctor = models.ForeignKey(to='Doctor', on_delete=models.PROTECT)
+
+
+class DoctorStats(models.Model):
+    doctor = models.ForeignKey(to='Doctor', on_delete=models.PROTECT)
+    no_of_phone_calls = models.IntegerField(default=0)
+

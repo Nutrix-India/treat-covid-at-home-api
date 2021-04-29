@@ -1,4 +1,5 @@
 asgiref==3.3.4
+cachetools==4.2.2
 certifi==2020.12.5
 chardet==4.0.0
 dj-database-url==0.5.0
@@ -9,9 +10,12 @@ gevent==21.1.2
 greenlet==1.0.0
 gunicorn==20.0.4
 idna==2.10
-psycopg2-binary
+ipinfo==3.0.0
+ipinfo-django==1.1.0
+psycopg2==2.8.6
 pytz==2021.1
 requests==2.25.1
+six==1.15.0
 sqlparse==0.4.1
 urllib3==1.26.4
 zope.event==4.5.0

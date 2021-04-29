@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ipinfo_django.middleware.IPinfo',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -133,3 +134,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GMAPS_API_KEY = os.environ.get('GMAPS_API_KEY')
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = ['https://curecovidathome.xyz', 'http://curecovidathome.xyz']
+
+
+IPINFO_TOKEN = os.environ.get('IPINFO_TOKEN')
+IPINFO_SETTINGS = {
+    'cache_options': {
+        'ttl': 30,
+        'maxsize': 128
+    },
+}
