@@ -132,4 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GMAPS_API_KEY = os.environ.get('GMAPS_API_KEY')
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['*']
+CORS_ALLOWED_ORIGINS = ['https://curecovidathome.xyz', 'http://curecovidathome.xyz']

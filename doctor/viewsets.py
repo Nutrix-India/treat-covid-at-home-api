@@ -50,16 +50,16 @@ class DoctorViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def list(self, request, *args, **kwargs):
-        source_lat = request.data.get('source_lat')
-        source_lon = request.data.get('source_lon')
+        source_lat = request.query_params.get('source_lat')
+        source_lon = request.query_params.get('source_lon')
 
         if not (source_lat or source_lon):
             return Response('Please pass source latitude and longitude in the request body')
 
         precision_level = request.data.get('precision_level', 1)
 
-        search_lat = self.truncate(source_lat, precision_level)
-        search_lon = self.truncate(source_lon, precision_level)
+        search_lat = self.truncate(float(source_lat), precision_level)
+        search_lon = self.truncate(float(source_lon), precision_level)
 
         nearby_doctors = Doctor.objects.filter(
             lat__startswith=search_lat,
