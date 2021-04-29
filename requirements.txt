@@ -12,7 +12,7 @@ gunicorn==20.0.4
 idna==2.10
 ipinfo==3.0.0
 ipinfo-django==1.1.0
-psycopg2==2.8.6
+psycopg2-binary
 pytz==2021.1
 requests==2.25.1
 six==1.15.0
