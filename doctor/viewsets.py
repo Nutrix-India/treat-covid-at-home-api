@@ -41,9 +41,7 @@ class DoctorViewSet(viewsets.ModelViewSet):
         long = serializer_data.get('long')
 
         if not (lat or long):
-            lat, long = request.ipinfo.loc.split(',')
-            serializer_data['lat'] = lat
-            serializer_data['long'] = long
+            return Response("Please pass lat and long in request body")
 
         experience_list = serializer_data.get('experience')
         education_list = serializer_data.get('education')
@@ -63,10 +61,7 @@ class DoctorViewSet(viewsets.ModelViewSet):
         source_lon = request.query_params.get('source_lon')
 
         if not (source_lat or source_lon):
-            source_lat, source_lon = request.ipinfo.loc.split(',')
-
-        print(f'Source Latitude: {source_lat}; Source Longitude: {source_lon}')
-        print(f'IP: {request.ipinfo.ip}')
+            return Response("Please pass source_lat and source_long as query parameters")
 
         precision_level = request.data.get('precision_level', 0)
 
