@@ -65,6 +65,9 @@ class DoctorViewSet(viewsets.ModelViewSet):
         if not (source_lat or source_lon):
             source_lat, source_lon = request.ipinfo.loc.split(',')
 
+        print(f'Source Latitude: {source_lat}; Source Longitude: {source_lon}')
+        print(f'IP: {request.ipinfo.ip}')
+
         precision_level = request.data.get('precision_level', 0)
 
         search_lat = self.truncate(float(source_lat), precision_level)
