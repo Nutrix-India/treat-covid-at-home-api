@@ -57,7 +57,7 @@ def sort_doctors_by_distance(doctors, source):
         doctor['experience'] = list(Experience.objects.filter(doctor_id=doctor['id']).values())
         doctors_list.append(doctor)
 
-    return sorted(doctors_list, key=sort_key, reverse=True)
+    return sorted(doctors_list, key=sort_key)
 
 
 

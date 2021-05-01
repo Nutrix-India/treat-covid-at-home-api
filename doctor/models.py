@@ -24,17 +24,17 @@ class Experience(models.Model):
     hospital_name = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
     experience = models.IntegerField()
-    doctor = models.ForeignKey(to='Doctor', on_delete=models.PROTECT)
+    doctor = models.ForeignKey(to='Doctor', on_delete=models.CASCADE)
 
 
 class Education(models.Model):
     id = models.AutoField(primary_key=True)
     university_name = models.CharField(max_length=100)
     degree = models.CharField(max_length=100)
-    doctor = models.ForeignKey(to='Doctor', on_delete=models.PROTECT)
+    doctor = models.ForeignKey(to='Doctor', on_delete=models.CASCADE)
 
 
 class DoctorStats(models.Model):
-    doctor = models.ForeignKey(to='Doctor', on_delete=models.PROTECT)
+    doctor = models.ForeignKey(to='Doctor', on_delete=models.CASCADE)
     no_of_phone_calls = models.IntegerField(default=0)
 
