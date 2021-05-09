@@ -17,6 +17,7 @@ class Doctor(models.Model):
     city = models.CharField(max_length=100, blank=True)
     lat = models.DecimalField(decimal_places=9, max_digits=20)
     long = models.DecimalField(decimal_places=9, max_digits=20)
+    is_verified = models.BooleanField(default=False)
 
 
 class Experience(models.Model):
